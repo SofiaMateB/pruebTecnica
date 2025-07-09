@@ -22,24 +22,45 @@ cp .env.example .env
 docker-compose up -d --build
 
 4.**Acceder al contenedor Laravel y ejecutar las migraciones y seeders**
+
+
 docker exec -it laravel_app bash
+
+
 composer install
+
+
 php artisan key:generate
+
+
 php artisan migrate:fresh --seed
 
+
+
 5.**Permisos de carpeta (si falla el log o storage)**
+
+
 chmod -R 777 storage bootstrap/cache
 
 
  **Endpoints de la API**
+
+ 
  Disponibilidad de Vehículos
+
+ 
  **Retorna vehículos no reservados en ese rango.**
  
  
  GET /api/vehicles/available?start_date=2025-07-09&end_date=2025-07-12
  
  **Reserva un vehículo**
+
+ 
  POST /api/vehicles/{id}/reserve
+
+
+ 
  **Json de prueba**
  {
   "CustomerID": 1,
@@ -52,6 +73,8 @@ chmod -R 777 storage bootstrap/cache
 
 
 **Algoritmos**
+
+
 **Calcula tarifa dinámica ajustada por demanda, antigüedad, kilometraje y mantenimiento**
 
 GET /api/vehicles/{id}/recommended-rate?start_date=2025-07-10&end_date=2025-07-15
@@ -62,7 +85,11 @@ GET /api/vehicles/optimized-suggestion?type=SUV&start_date=2025-07-15&end_date=2
 
 
 **Pruebas Unitarias**
+
+
 **Para ejcutar las pruebas se ejecuta el siguiente comando**
+
+
 php artisan test
 
 
