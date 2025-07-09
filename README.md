@@ -34,7 +34,10 @@ chmod -R 777 storage bootstrap/cache
  **Endpoints de la API**
  Disponibilidad de Vehículos
  **Retorna vehículos no reservados en ese rango.**
+ 
+ 
  GET /api/vehicles/available?start_date=2025-07-09&end_date=2025-07-12
+ 
  **Reserva un vehículo**
  POST /api/vehicles/{id}/reserve
  **Json de prueba**
