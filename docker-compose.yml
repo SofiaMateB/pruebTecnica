@@ -1,0 +1,46 @@
+services:
+  laravel_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8000:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - db
+    networks:
+      - laravel
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver_db
+    environment:
+      SA_PASSWORD: "AdminPass123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    networks:
+      - laravel
+    volumes:
+      - ./init-db.sql:/var/init-db.sql
+
+  db-init:
+    image: mcr.microsoft.com/mssql-tools
+    container_name: sqlserver_db_init
+    depends_on:
+      - db
+    entrypoint: /bin/bash
+    command: >
+      -c "
+      sleep 15 &&
+      /opt/mssql-tools/bin/sqlcmd -S db -U sa -P AdminPass123 -d master -i /var/init-db.sql"
+    volumes:
+      - ./init-db.sql:/var/init-db.sql
+    networks:
+      - laravel
+
+networks:
+  laravel:
+    driver: bridge
