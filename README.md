@@ -50,8 +50,11 @@ chmod -R 777 storage bootstrap/cache
 
 **Algoritmos**
 **Calcula tarifa dinámica ajustada por demanda, antigüedad, kilometraje y mantenimiento**
+
 GET /api/vehicles/{id}/recommended-rate?start_date=2025-07-10&end_date=2025-07-15
+
 **Sugerencia del vehículo más cercano en caso de no disponibilidad**
+
 GET /api/vehicles/optimized-suggestion?type=SUV&start_date=2025-07-15&end_date=2025-07-20
 
 
